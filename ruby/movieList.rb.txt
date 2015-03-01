@@ -1,0 +1,42 @@
+movies = { movie1: 1,
+    movie2: 2,
+    movie3: 3
+    }
+puts "input the action (delete, add, display, update)"
+choice = gets.chomp
+
+case choice
+when "add" 
+    puts "Input movie title"
+    title = gets.chomp
+    puts "Input movie rating"
+    rating = gets.chomp
+    title = title.intern
+    rating = rating.to_i
+    if (movies[title] == nil)
+        movies[title]=rating
+    else puts "Error"
+    end
+when "update"
+    puts "Input movie title"
+    title = gets.chomp
+    if (movies[title.intern] == nil)
+        puts "Error"
+    else puts "Input movie rating"
+        rating = gets.chomp
+        movies[title.intern] = rating.to_i
+    end
+when "display"
+    movies.each do |movie, rating|
+        puts "#{movie}: #{rating}"
+    end
+when "delete"
+    puts "Input movie title"
+    title = gets.chomp
+    if (movies[title.to_sym])
+        movies.delete(title)
+    else puts "Error"
+    end
+else 
+    puts "Error!"
+end
